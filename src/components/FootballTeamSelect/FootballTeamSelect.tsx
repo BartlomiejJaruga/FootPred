@@ -67,6 +67,7 @@ export function FootballTeamSelect({
             <Search size={16} className={styles['search-icon']} />
             <input
               type="text"
+              name="teamSearchBar"
               className={styles['search-input']}
               placeholder="Search team..."
               value={searchTerm}
