@@ -1,0 +1,100 @@
+.select-container {
+  position: relative;
+  width: 100%;
+}
+
+.select-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background-color: $color-background-secondary;
+  padding: 0.8rem 1rem;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &.is-active {
+    border-color: $color-accent-primary;
+  }
+}
+
+.placeholder-text {
+  color: $color-text-gray;
+}
+
+.arrow-icon {
+  transition: transform 0.2s ease;
+  &.is-rotated {
+    transform: rotate(180deg);
+  }
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 100;
+  box-sizing: border-box;
+  box-shadow: $shadow-medium;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background-color: $color-background-primary;
+  width: 100%;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 0.8rem;
+
+  .search-icon {
+    margin-right: 8px;
+    color: $color-text-gray;
+  }
+}
+
+.search-input {
+  outline: none;
+  border: none;
+  background: transparent;
+  width: 100%;
+  color: $color-text-white;
+}
+
+.options-list {
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #333;
+  }
+}
+
+.option-item {
+  transition: background 0.2s ease;
+  cursor: pointer;
+  padding: 0.7rem 1rem;
+
+  &:hover {
+    background-color: $color-accent-primary;
+  }
+}
+
+.no-results {
+  padding: 1rem;
+  color: $color-text-gray;
+  text-align: center;
+}

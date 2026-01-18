@@ -1,5 +1,29 @@
 .football-teams-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 1rem;
   background-color: $color-background-secondary;
-  width: 100px;
-  height: 100px;
+  padding: 2rem;
+  min-width: 800px;
+
+  .team-select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 300px;
+
+    & > h3 {
+      @include apply-font($font-heading-primary);
+      font-size: 1.25rem;
+    }
+  }
+
+  .versus-text {
+    @include apply-font($font-fancy-primary);
+    font-size: 3rem;
+    letter-spacing: 5px;
+  }
 }
