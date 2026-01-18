@@ -1,0 +1,14 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  min-height: 100vh;
+}
+
+.website-title {
+  font-size: 3rem;
+  @include apply-font($font-heading-primary);
+  margin-bottom: 10vh;
+}
