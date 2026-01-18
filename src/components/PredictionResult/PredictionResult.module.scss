@@ -1,5 +1,57 @@
-.prediction-results {
+.prediction-results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 1rem;
   background-color: $color-background-secondary;
-  width: 100px;
-  height: 100px;
+  padding: 3rem;
+  width: 600px;
+
+  &__title {
+    @include apply-font($font-heading-primary);
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+
+  &__teams {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+
+    .team-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 200px;
+      max-width: 250px;
+      font-size: 1.5rem;
+      text-align: center;
+
+      &__label {
+        @include apply-font($font-heading-primary);
+        font-weight: 700;
+      }
+
+      &__name {
+        color: $color-accent-primary;
+        font-weight: 600;
+      }
+    }
+
+    .versus-text {
+      @include apply-font($font-fancy-primary);
+      font-size: 3rem;
+      letter-spacing: 5px;
+    }
+  }
+
+  &__winner {
+    margin-top: 1.5rem;
+    color: $color-winner;
+    font-size: 1.5rem;
+  }
 }

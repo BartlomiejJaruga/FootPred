@@ -5,7 +5,7 @@ $app-padding: 1rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
   padding: $app-padding;
   min-height: calc(100vh - 2 * $app-padding);
 }
@@ -15,7 +15,7 @@ $app-padding: 1rem;
   flex-direction: column;
   @include apply-font($font-heading-primary);
   gap: 0.5rem;
-  margin-bottom: 7.5vh;
+  margin-bottom: 3vh;
   text-align: center;
 
   & > h1 {

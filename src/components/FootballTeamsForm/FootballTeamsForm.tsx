@@ -4,8 +4,15 @@ import type { TeamsListResponseDTO } from '@dtos/TeamsListResponseDTO';
 import { useEffect, useState } from 'react';
 import { sortListAlphabetically } from '@lib/utils';
 import axiosInstance from '@services/axiosInstance';
+import type { PredictResponseDTO } from '@dtos/PredictResponseDTO';
 
-export function FootballTeamsForm() {
+type FootballTeamsFormProps = {
+  setPredictResults: (predictResults: PredictResponseDTO | null) => void;
+};
+
+export function FootballTeamsForm({
+  setPredictResults,
+}: FootballTeamsFormProps) {
   const [teamList, setTeamList] = useState<string[]>([]);
   const [homeTeam, setHomeTeam] = useState<string>('');
   const [awayTeam, setAwayTeam] = useState<string>('');
@@ -27,7 +34,7 @@ export function FootballTeamsForm() {
     loadTeams();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!homeTeam || !awayTeam) {
@@ -40,9 +47,17 @@ export function FootballTeamsForm() {
       return;
     }
 
-    console.log('--- Prediction Request ---');
-    console.log('Home Team:', homeTeam);
-    console.log('Away Team:', awayTeam);
+    try {
+      const response = await axiosInstance.post('/v1/predict', {
+        home_team: homeTeam,
+        away_team: awayTeam,
+      });
+
+      setPredictResults(response.data);
+    } catch (error) {
+      console.error(error);
+      setPredictResults(null);
+    }
   };
 
   return (
