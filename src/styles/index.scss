@@ -1,0 +1,27 @@
+@import 'reset-css/reset.css';
+
+:root {
+  @include apply-font($font-general);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $color-background-primary;
+  color: $color-text-white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.website-title {
+  font-size: 3rem;
+  @include apply-font($font-heading-primary);
+}

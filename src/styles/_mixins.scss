@@ -1,0 +1,73 @@
+@use './_variables' as *;
+
+// All app mixins are placed here
+
+@mixin respond-above($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin apply-font($font-map) {
+  @each $prop, $value in $font-map {
+    #{$prop}: #{$value};
+  }
+}
+
+// buttons templates
+
+@mixin default-button(
+  $background-color: $color-accent-primary,
+  $background-color-hover: $color-accent-primary-hover,
+  $text-color: $color-text-black
+) {
+  @include apply-font($font-general);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.5em;
+  background-color: $background-color;
+  color: $text-color;
+
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+
+@mixin default-button-with-spinner(
+  $background-color: $color-accent-primary,
+  $background-color-hover: $color-accent-primary-hover,
+  $text-color: $color-text-black
+) {
+  @include default-button(
+    $background-color,
+    $background-color-hover,
+    $text-color
+  );
+
+  &:disabled {
+    position: relative;
+    cursor: not-allowed;
+    color: transparent;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: spin360 1s linear infinite;
+      border: 0.15em solid rgba($background-color, 0.1);
+      border-top-color: $text-color;
+      border-radius: 50%;
+      width: 1em;
+      height: 1em;
+      content: '';
+    }
+  }
+}
+
+@keyframes spin360 {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

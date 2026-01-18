@@ -1,0 +1,63 @@
+@use 'sass:color';
+
+/* ================= FUNCTIONS ================= */
+
+/* ================= COLORS PALLETE ================= */
+
+$color-background-primary: #242424;
+$color-background-primary-hover: #202020;
+$color-background-secondary: #1a1a1a;
+$color-background-secondary-hover: #121212;
+
+$color-accent-primary: #10b981;
+$color-accent-primary-hover: color.adjust(
+  $color-accent-primary,
+  $lightness: 10%
+);
+$color-accent-secondary: #f59e0b;
+$color-accent-secondary-hover: color.adjust(
+  $color-accent-secondary,
+  $lightness: -10%
+);
+
+$color-success: #198754;
+$color-success-hover: color.adjust($color-success, $lightness: -7.5%);
+$color-error: #dc3545;
+$color-error-hover: color.adjust($color-error, $lightness: -10%);
+$color-warning: #ffc107;
+$color-warning-hover: color.adjust($color-warning, $lightness: -7.5%);
+$color-info: #0dcaf0;
+$color-info-hover: color.adjust($color-info, $lightness: -10%);
+
+$color-text-white: rgba(255, 255, 255, 0.87);
+$color-subtext-white: rgba(255, 255, 255, 0.75);
+$color-text-black: #000000;
+$color-subtext-black: #101010;
+
+$color-buttons-primary: $color-accent-primary;
+$color-buttons-primary-hover: $color-accent-primary-hover;
+
+/* ================= GRADIENTS ================= */
+
+/* ================= FONTS ================= */
+
+$font-general: (
+  font-family: (
+    'Inter',
+    sans-serif,
+  ),
+  font-weight: 300,
+);
+
+$font-heading-primary: (
+  font-family: (
+    'Inter',
+    sans-serif,
+  ),
+  font-weight: 500,
+);
+
+/* ================= SHADOWS ================= */
+
+$shadow-light: 0 0 0.5rem $color-accent-primary-hover;
+$shadow-medium: 0 0 0.25rem $color-accent-primary-hover;
