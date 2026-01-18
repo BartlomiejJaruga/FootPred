@@ -5,8 +5,13 @@ import styles from '@styles/app.module.scss';
 export default function App() {
   return (
     <div className={styles['app']}>
-      <h1 className={styles['website-title']}>Football Predict</h1>
+      <div className={styles['website-title-container']}>
+        <h1>GoalCast</h1>
+        <h2>(Football matches prediction AI)</h2>
+      </div>
+
       <FootballTeamsForm />
+
       <PredictionResult />
     </div>
   );

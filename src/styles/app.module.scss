@@ -1,14 +1,29 @@
+$app-padding: 1rem;
+
 .app {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  min-height: 100vh;
+  padding: $app-padding;
+  min-height: calc(100vh - 2 * $app-padding);
 }
 
-.website-title {
-  font-size: 3rem;
+.website-title-container {
+  display: flex;
+  flex-direction: column;
   @include apply-font($font-heading-primary);
-  margin-bottom: 10vh;
+  gap: 0.5rem;
+  margin-bottom: 7.5vh;
+  text-align: center;
+
+  & > h1 {
+    font-size: 4rem;
+  }
+
+  & > h2 {
+    color: $color-text-gray;
+    font-size: 1.5rem;
+  }
 }

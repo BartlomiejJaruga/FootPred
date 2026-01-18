@@ -7,6 +7,8 @@ import axiosInstance from '@services/axiosInstance';
 
 export function FootballTeamsForm() {
   const [teamList, setTeamList] = useState<string[]>([]);
+  const [homeTeam, setHomeTeam] = useState<string>('');
+  const [awayTeam, setAwayTeam] = useState<string>('');
 
   useEffect(() => {
     const loadTeams = async () => {
@@ -25,21 +27,45 @@ export function FootballTeamsForm() {
     loadTeams();
   }, []);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!homeTeam || !awayTeam) {
+      alert('Please select both teams!');
+      return;
+    }
+
+    if (homeTeam == awayTeam) {
+      alert('A team cannot play against itself!');
+      return;
+    }
+
+    console.log('--- Prediction Request ---');
+    console.log('Home Team:', homeTeam);
+    console.log('Away Team:', awayTeam);
+  };
+
   return (
     <>
-      <div className={styles['football-teams-form']}>
-        <div className={styles['team-select-container']}>
-          <h3>Home Team</h3>
-          <FootballTeamSelect teamList={teamList} />
+      <form className={styles['football-teams-form']} onSubmit={handleSubmit}>
+        <div className={styles['football-teams-form__teams-selection']}>
+          <div className={styles['team-select-container']}>
+            <h3>Home Team</h3>
+            <FootballTeamSelect teamList={teamList} onSelect={setHomeTeam} />
+          </div>
+
+          <span className={styles['versus-text']}>VS</span>
+
+          <div className={styles['team-select-container']}>
+            <h3>Away Team</h3>
+            <FootballTeamSelect teamList={teamList} onSelect={setAwayTeam} />
+          </div>
         </div>
 
-        <span className={styles['versus-text']}>VS</span>
-
-        <div className={styles['team-select-container']}>
-          <h3>Away Team</h3>
-          <FootballTeamSelect teamList={teamList} />
-        </div>
-      </div>
+        <button type="submit" className={styles['football-teams-form__submit']}>
+          PREDICT
+        </button>
+      </form>
     </>
   );
 }
