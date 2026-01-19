@@ -1,4 +1,5 @@
-$app-padding: 1rem;
+$app-padding-v: 10vh;
+$app-padding-h: 1rem;
 
 .app {
   display: flex;
@@ -6,8 +7,8 @@ $app-padding: 1rem;
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  padding: $app-padding;
-  min-height: calc(100vh - 2 * $app-padding);
+  padding: $app-padding-v $app-padding-h;
+  min-height: calc(100vh - 2 * $app-padding-v);
 }
 
 .website-title-container {
