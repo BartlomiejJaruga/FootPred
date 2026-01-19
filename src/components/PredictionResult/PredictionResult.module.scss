@@ -50,8 +50,51 @@
   }
 
   &__winner {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     color: $color-winner;
     font-size: 1.5rem;
+  }
+}
+
+.prediction-horizontal-bar {
+  $height: 1.5rem;
+
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-top: 3rem;
+  border-radius: $height;
+  width: 100%;
+  height: $height;
+
+  .bar {
+    display: flex;
+    align-items: center;
+    background-color: $color-error;
+    height: $height;
+    font-weight: 500;
+
+    &--home-team {
+      border-radius: $height 0 0 $height;
+      padding-left: 1rem;
+      text-align: left;
+    }
+
+    &--draw {
+      justify-content: center;
+      background-color: $color-draw;
+      text-align: center;
+    }
+
+    &--away-team {
+      justify-content: flex-end;
+      border-radius: 0 $height $height 0;
+      padding-right: 1rem;
+      text-align: right;
+    }
+
+    &--winner {
+      background-color: $color-success;
+    }
   }
 }

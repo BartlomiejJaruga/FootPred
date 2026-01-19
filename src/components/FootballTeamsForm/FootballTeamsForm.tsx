@@ -6,6 +6,8 @@ import { sortListAlphabetically } from '@lib/utils';
 import axiosInstance from '@services/axiosInstance';
 import type { PredictResponseDTO } from '@dtos/PredictResponseDTO';
 import { LoadingIndicator } from '@components/LoadingIndicator';
+import type { GetAvailableModelsResponseDTO } from '@dtos/GetAvailableModelsResponseDTO';
+import { PredictionModelSelect } from '@components/PredictionModelSelect';
 
 type FootballTeamsFormProps = {
   setPredictResults: (predictResults: PredictResponseDTO | null) => void;
@@ -15,8 +17,10 @@ export function FootballTeamsForm({
   setPredictResults,
 }: FootballTeamsFormProps) {
   const [teamList, setTeamList] = useState<string[]>([]);
+  const [modelsList, setModelsList] = useState<string[]>([]);
   const [homeTeam, setHomeTeam] = useState<string>('');
   const [awayTeam, setAwayTeam] = useState<string>('');
+  const [predictionModel, setPredictionModel] = useState<string>('');
   const [isPredicting, setIsPredicting] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,14 +37,27 @@ export function FootballTeamsForm({
       }
     };
 
+    const loadModels = async () => {
+      try {
+        const response = await axiosInstance.get('/v1/models');
+
+        const models = response.data as GetAvailableModelsResponseDTO;
+        setModelsList(models.models_list);
+      } catch (error) {
+        console.error(error);
+        setModelsList([]);
+      }
+    };
+
     loadTeams();
+    loadModels();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!homeTeam || !awayTeam) {
-      alert('Please select both teams!');
+    if (!homeTeam || !awayTeam || !predictionModel) {
+      alert('Please select both teams and prediction model!');
       return;
     }
 
@@ -55,6 +72,7 @@ export function FootballTeamsForm({
       const response = await axiosInstance.post('/v1/predict', {
         home_team: homeTeam,
         away_team: awayTeam,
+        model_name: predictionModel,
       });
 
       setPredictResults(response.data);
@@ -82,6 +100,11 @@ export function FootballTeamsForm({
             <FootballTeamSelect teamList={teamList} onSelect={setAwayTeam} />
           </div>
         </div>
+
+        <PredictionModelSelect
+          modelList={modelsList}
+          onModelSelect={setPredictionModel}
+        />
 
         {isPredicting && (
           <LoadingIndicator

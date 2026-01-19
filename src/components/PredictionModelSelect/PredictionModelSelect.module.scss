@@ -1,0 +1,99 @@
+.select-container {
+  position: relative;
+  width: 100%;
+  font-family: inherit;
+}
+
+.select-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background-color: $color-background-secondary;
+  padding: 0.8rem 1rem;
+  color: $color-text-white;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: lighten($color-background-secondary, 2%);
+  }
+
+  &.is-active {
+    border-color: $color-accent-primary;
+    background-color: $color-background-secondary;
+  }
+}
+
+.placeholder-text {
+  color: $color-text-gray;
+}
+
+.arrow-icon {
+  transition: transform 0.2s ease;
+  color: $color-text-gray;
+
+  &.is-rotated {
+    transform: rotate(180deg);
+  }
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  box-sizing: border-box;
+  box-shadow: $shadow-medium;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background-color: $color-background-primary;
+  width: 100%;
+  overflow: hidden;
+}
+
+.options-list {
+  margin: 0;
+  padding: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  list-style: none;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.option-item {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+  color: $color-text-white;
+
+  &:hover {
+    background-color: $color-accent-primary;
+  }
+}
+
+.no-results {
+  padding: 1.5rem;
+  color: $color-text-gray;
+  font-style: italic;
+  font-size: 0.9rem;
+  text-align: center;
+}
