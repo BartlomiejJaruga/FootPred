@@ -70,15 +70,27 @@ export function PredictionModelSelect({
         <div className={styles['dropdown-menu']}>
           <ul className={styles['options-list']}>
             {modelList.length > 0 ? (
-              modelList.map((model) => (
+              <>
                 <li
-                  key={model}
-                  className={styles['option-item']}
-                  onClick={() => handleSelect(model)}
+                  className={clsx(
+                    styles['option-item'],
+                    styles['option-item--new']
+                  )}
+                  onClick={() => handleSelect('Random Prediction Model')}
                 >
-                  {formatDisplayLabel(model)}
+                  RANDOM PREDICTION MODEL
                 </li>
-              ))
+
+                {modelList.map((model) => (
+                  <li
+                    key={model}
+                    className={styles['option-item']}
+                    onClick={() => handleSelect(model)}
+                  >
+                    {formatDisplayLabel(model)}
+                  </li>
+                ))}
+              </>
             ) : (
               <li className={styles['no-results']}>No models available</li>
             )}

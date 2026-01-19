@@ -77,15 +77,27 @@ export function FootballTeamSelect({
           </div>
           <ul className={styles['options-list']}>
             {filteredTeams.length > 0 ? (
-              filteredTeams.map((team) => (
+              <>
                 <li
-                  key={team}
-                  className={styles['option-item']}
-                  onClick={() => handleSelect(team)}
+                  className={clsx(
+                    styles['option-item'],
+                    styles['option-item--new']
+                  )}
+                  onClick={() => handleSelect('Random Team')}
                 >
-                  {team}
+                  RANDOM TEAM
                 </li>
-              ))
+
+                {filteredTeams.map((team) => (
+                  <li
+                    key={team}
+                    className={styles['option-item']}
+                    onClick={() => handleSelect(team)}
+                  >
+                    {team}
+                  </li>
+                ))}
+              </>
             ) : (
               <li className={styles['no-results']}>No results</li>
             )}

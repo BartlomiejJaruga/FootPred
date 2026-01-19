@@ -61,7 +61,7 @@ export function FootballTeamsForm({
       return;
     }
 
-    if (homeTeam == awayTeam) {
+    if (homeTeam != 'Random Team' && homeTeam == awayTeam) {
       alert('A team cannot play against itself!');
       return;
     }
@@ -69,11 +69,16 @@ export function FootballTeamsForm({
     try {
       setIsPredicting(true);
 
-      const response = await axiosInstance.post('/v1/predict', {
-        home_team: homeTeam,
-        away_team: awayTeam,
-        model_name: predictionModel,
-      });
+      const requestBody = {
+        home_team: homeTeam === 'Random Team' ? null : homeTeam,
+        away_team: awayTeam === 'Random Team' ? null : awayTeam,
+        model_name:
+          predictionModel === 'Random Prediction Model'
+            ? null
+            : predictionModel,
+      };
+
+      const response = await axiosInstance.post('/v1/predict', requestBody);
 
       setPredictResults(response.data);
       setIsPredicting(false);
